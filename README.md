@@ -6,4 +6,8 @@ When you use this add-on, anytime you visit [amazon.com](http://www.amazon.com),
 
 AmazonSmile is a way to donate a small amount from your purchase to charitable causes. Read more at http://smile.amazon.com
 
+Extension currently available for Firefox.  
+https://addons.mozilla.org/en-US/firefox/addon/alwayssmile/
+
+
 AlwaysSmile is in no way affiliated with Amazon.
