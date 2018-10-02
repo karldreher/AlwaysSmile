@@ -6,7 +6,7 @@
  
   "description": "Redirects Amazon.com to smile.amazon.com.  This helps you always donate part of your purchase by purchasing at smile.amazon.com!",
   "icons": {
-    "48": "icons/border-48.png"
+    "48": "icon-48.png"
   },
 
   "applications": {
