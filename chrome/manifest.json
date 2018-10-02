@@ -9,13 +9,6 @@
     "48": "icon-48.png"
   },
 
-  "applications": {
-    "gecko": {
-      "id": "alwayssmile@mozilla.org",
-      "strict_min_version": "45.0"
-    }
-  },
-
   "content_scripts": [
     {
       "matches": ["*://www.amazon.com/*","*://www.amazon.de/*"],
