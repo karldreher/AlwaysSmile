@@ -2,11 +2,12 @@
 
   "manifest_version": 2,
   "name": "AlwaysSmile",
-  "version": "1.2.0",
+  "version": "1.2.1",
  
   "description": "Redirects Amazon.com to smile.amazon.com.  This helps you always donate part of your purchase by purchasing at smile.amazon.com!",
   "icons": {
-    "48": "icon-48.png"
+    "48": "icon-48.png",
+	"128": "icon-128.png"
   },
 
   "applications": {
