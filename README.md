@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/karldreher/alwayssmile/_apis/build/status/karldreher.AlwaysSmile?branchName=master)](https://dev.azure.com/karldreher/alwayssmile/_build/latest?definitionId=6&branchName=master)
+
 # AlwaysSmile
 
 A simple browser extension to redirect Amazon.com to Smile.amazon.com.  AlwaysSmile is currently at version `1.2.1` and is available for Firefox and Chrome.

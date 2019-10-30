@@ -1,0 +1,70 @@
+jobs:
+  - job: GetManifestVersions
+    pool:
+      name: Hosted Ubuntu 1604
+    steps:
+    - task: bash@3
+      name: GetFirefoxVersion
+      displayName: Get Firefox Version
+      inputs:
+        targetType: 'inline'
+        script: |
+          sudo apt-get install -y jq
+          jq -r .version manifest.json
+          manifestversion=$(jq -r .version manifest.json)
+          echo "##vso[task.setvariable variable=FirefoxVersion;isoutput=true]$manifestversion"
+        workingDirectory: 'firefox'
+        failOnStderr: true
+    - task: bash@3
+      name: GetChromeVersion
+      displayName: Get Chrome Version
+      inputs:
+        targetType: 'inline'
+        script: |
+          sudo apt-get install -y jq
+          jq -r .version manifest.json
+          manifestversion=$(jq -r .version manifest.json)
+          echo "##vso[task.setvariable variable=ChromeVersion;isoutput=true]$manifestversion"
+        workingDirectory: 'chrome'
+        failOnStderr: true
+
+  - job: FirefoxBuild
+    dependsOn: GetManifestVersions
+    variables:
+      version: $[ dependencies.GetManifestVersions.outputs['GetFirefoxVersion.FirefoxVersion'] ]
+    pool:
+      name: Hosted Ubuntu 1604
+    steps:
+        
+    - task: bash@3
+      displayName: Build Firefox
+      inputs:
+        targetType: filePath
+        filePath: './build/build-firefox.sh'
+        workingDirectory: build
+        failOnStderr: true
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Pipeline Artifact'
+      inputs:
+        targetPath: firefox/
+        artifact: 'firefox-$(version).zip'
+
+  - job: ChromeBuild
+    dependsOn: GetManifestVersions
+    variables:
+      version: $[ dependencies.GetManifestVersions.outputs['GetChromeVersion.ChromeVersion'] ]
+    pool:
+      name: Hosted Ubuntu 1604
+    steps:
+    - task: bash@3
+      displayName: Build Chrome
+      inputs:
+        targetType: filePath
+        filePath: './build/build-chrome.sh'
+        workingDirectory: build
+        failOnStderr: true
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Pipeline Artifact'
+      inputs:
+        targetPath: chrome/
+        artifact: 'chrome-$(version).zip'
