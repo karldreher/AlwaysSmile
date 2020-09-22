@@ -17,7 +17,7 @@
   },
 
   "permissions": [ 
-    "webRequest", "webRequestBlocking", "https://www.amazon.com/*", "https://www.amazon.de/*"
+    "webRequest", "webRequestBlocking", "https://www.amazon.com/*", "https://www.amazon.de/*", "https://www.amazon.co.uk/*"
   ]
 
 

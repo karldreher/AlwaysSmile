@@ -16,7 +16,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 		}
 	}, 
 
-	{urls : ["https://www.amazon.com/*","https://www.amazon.de/*"],
+	{urls : ["https://www.amazon.com/*","https://www.amazon.de/*","https://www.amazon.co.uk/*"],
 	types: ["main_frame","sub_frame"]}, 
 	["blocking"]
 );
