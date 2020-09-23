@@ -47,7 +47,7 @@ jobs:
       displayName: 'Publish Pipeline Artifact'
       inputs:
         targetPath: firefox/
-        artifact: 'firefox-$(version).zip'
+        artifact: 'firefox-$(version)'
 
   - job: ChromeBuild
     dependsOn: GetManifestVersions
@@ -67,4 +67,4 @@ jobs:
       displayName: 'Publish Pipeline Artifact'
       inputs:
         targetPath: chrome/
-        artifact: 'chrome-$(version).zip'
+        artifact: 'chrome-$(version)'
