@@ -1,6 +1,6 @@
 #!/bin/bash
-
+echo $browser
 cd ../firefox
 cp ../icons/*.png .
 cp ../*.js .
-zip alwayssmile-firefox-$(version).zip .
+zip $browser-extension-$version *

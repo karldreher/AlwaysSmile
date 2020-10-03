@@ -32,6 +32,7 @@ jobs:
     dependsOn: GetManifestVersions
     variables:
       version: $[ dependencies.GetManifestVersions.outputs['GetFirefoxVersion.FirefoxVersion'] ]
+      browser: firefox
     pool:
       name: Hosted Ubuntu 1604
     steps:
@@ -53,6 +54,7 @@ jobs:
     dependsOn: GetManifestVersions
     variables:
       version: $[ dependencies.GetManifestVersions.outputs['GetChromeVersion.ChromeVersion'] ]
+      browser: chrome
     pool:
       name: Hosted Ubuntu 1604
     steps:
