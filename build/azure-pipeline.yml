@@ -41,8 +41,8 @@ jobs:
       displayName: Build Firefox
       inputs:
         targetType: filePath
-        filePath: './build/build-firefox.sh'
-        workingDirectory: build
+        filePath: './build/build.sh'
+        workingDirectory: $(browser)
         failOnStderr: true
       env: 
         filename: $(browser)-extension-$(version).zip
@@ -64,8 +64,8 @@ jobs:
       displayName: Build Chrome
       inputs:
         targetType: filePath
-        filePath: './build/build-chrome.sh'
-        workingDirectory: build
+        filePath: './build/build.sh'
+        workingDirectory: $(browser)
         failOnStderr: true
       env: 
         filename: $(browser)-extension-$(version).zip
