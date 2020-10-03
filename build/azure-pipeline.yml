@@ -44,6 +44,8 @@ jobs:
         filePath: './build/build-firefox.sh'
         workingDirectory: build
         failOnStderr: true
+      env: 
+        filename: $(browser)-extension-$(version).zip
     - task: PublishPipelineArtifact@1
       displayName: 'Publish Pipeline Artifact'
       inputs:
@@ -65,6 +67,8 @@ jobs:
         filePath: './build/build-chrome.sh'
         workingDirectory: build
         failOnStderr: true
+      env: 
+        filename: $(browser)-extension-$(version).zip
     - task: PublishPipelineArtifact@1
       displayName: 'Publish Pipeline Artifact'
       inputs:
