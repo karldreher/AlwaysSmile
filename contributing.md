@@ -9,8 +9,8 @@ Primarily, updates will most likely be to new Amazon sites.  This extension does
 
 Two things are needed when adding a new amazon TLD:
 
-- Add the FQDN to the "urls" property within the redirection functions.  Each URL should be on it's own line.
-- The same FQDN should be added to each of the manifests in the `chrome` and `firefox` directories.
+- Add the FQDN to the "urls" property within the redirection function in `smile.js`.  Each URL should be on it's own line.
+- The same FQDN should be added to `manifest.json`.
 
 ## Testing
 Prior to submitting your PR, you should test this within your own browser(s) to verify that your change works as intended.  After making a change, it is suggested that you: 
