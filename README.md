@@ -2,14 +2,14 @@
 
 # AlwaysSmile
 
-A simple browser extension to redirect Amazon.com to Smile.amazon.com.  AlwaysSmile is currently at version `1.2.1` and is available for Firefox and Chrome.
+A simple browser extension to redirect Amazon.com to Smile.amazon.com.  AlwaysSmile is currently at version `1.3.1` and is available for Firefox and Chrome.
 
 When you use this add-on, anytime you visit [amazon.com](http://www.amazon.com), you will be automatically redirected to [smile.amazon.com](http://smile.amazon.com). This way you can always Smile!  
 
 AmazonSmile is a way to donate a small amount from your purchase to charitable causes. Read more at http://smile.amazon.com
 
 
-As of version `1.2.0`, this extension provides support for the following Amazon sites:
+As of the current version, this extension provides support for the following Amazon sites:
 
 - [amazon.de](https://www.amazon.de) 
 - [amazon.com](https://www.amazon.com)
