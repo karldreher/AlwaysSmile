@@ -33,5 +33,5 @@ jobs:
     - task: PublishPipelineArtifact@1
       displayName: 'Publish Pipeline Artifact'
       inputs:
-        targetPath: chrome/
+        targetPath: export/
         artifact: 'extension-$(version)'
