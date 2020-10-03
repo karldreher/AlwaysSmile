@@ -1,76 +1,36 @@
 jobs:
-  - job: GetManifestVersions
+  - job: GetManifestVersion
     pool:
       vmImage: ubuntu-18.04
     steps:
     - task: bash@3
-      name: GetFirefoxVersion
-      displayName: Get Firefox Version
+      name: GetExtensionVersion
+      displayName: Get Extension Version
       inputs:
         targetType: 'inline'
         script: |
           sudo apt-get install -y jq
           jq -r .version manifest.json
           manifestversion=$(jq -r .version manifest.json)
-          echo "##vso[task.setvariable variable=FirefoxVersion;isoutput=true]$manifestversion"
-        workingDirectory: 'firefox'
-        failOnStderr: true
-    - task: bash@3
-      name: GetChromeVersion
-      displayName: Get Chrome Version
-      inputs:
-        targetType: 'inline'
-        script: |
-          sudo apt-get install -y jq
-          jq -r .version manifest.json
-          manifestversion=$(jq -r .version manifest.json)
-          echo "##vso[task.setvariable variable=ChromeVersion;isoutput=true]$manifestversion"
-        workingDirectory: 'chrome'
+          echo "##vso[task.setvariable variable=ExtensionVersion;isoutput=true]$manifestversion"
         failOnStderr: true
 
-  - job: FirefoxBuild
-    dependsOn: GetManifestVersions
+  - job: ExtensionBuild
+    dependsOn: GetManifestVersion
     variables:
-      version: $[ dependencies.GetManifestVersions.outputs['GetFirefoxVersion.FirefoxVersion'] ]
-      browser: firefox
-    pool:
-      vmImage: ubuntu-18.04
-    steps:
-        
-    - task: bash@3
-      displayName: Build Firefox
-      inputs:
-        targetType: filePath
-        filePath: './build/build.sh'
-        workingDirectory: $(browser)
-        failOnStderr: true
-      env: 
-        filename: $(browser)-extension-$(version).zip
-    - task: PublishPipelineArtifact@1
-      displayName: 'Publish Pipeline Artifact'
-      inputs:
-        targetPath: firefox/
-        artifact: 'firefox-$(version)'
-
-  - job: ChromeBuild
-    dependsOn: GetManifestVersions
-    variables:
-      version: $[ dependencies.GetManifestVersions.outputs['GetChromeVersion.ChromeVersion'] ]
-      browser: chrome
+      version: $[ dependencies.GetManifestVersion.outputs['GetExtensionVersion.ExtensionVersion'] ]
     pool:
       vmImage: ubuntu-18.04
     steps:
     - task: bash@3
-      displayName: Build Chrome
+      displayName: Export Extension
       inputs:
         targetType: filePath
         filePath: './build/build.sh'
-        workingDirectory: $(browser)
-        failOnStderr: true
       env: 
-        filename: $(browser)-extension-$(version).zip
+        filename: extension-$(version).zip
     - task: PublishPipelineArtifact@1
       displayName: 'Publish Pipeline Artifact'
       inputs:
-        targetPath: chrome/
-        artifact: 'chrome-$(version)'
+        targetPath: export/
+        artifact: 'extension-$(version)'
