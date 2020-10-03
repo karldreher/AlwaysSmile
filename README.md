@@ -16,6 +16,9 @@ AmazonSmile is a way to donate a small amount from your purchase to charitable c
 
 * Chrome: https://chrome.google.com/webstore/detail/alwayssmile/nhafpahnjcnanhgnpabflmihfodkldla
 
+## Contributing
+See [contributing.md](contributing.md)
 
 
+## Disclaimer
 AlwaysSmile is in no way affiliated with Amazon.
