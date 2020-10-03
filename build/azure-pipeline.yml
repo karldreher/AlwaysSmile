@@ -1,7 +1,7 @@
 jobs:
   - job: GetManifestVersions
     pool:
-      name: Hosted Ubuntu 1604
+      vmImage: ubuntu-18.04
     steps:
     - task: bash@3
       name: GetFirefoxVersion
@@ -32,39 +32,45 @@ jobs:
     dependsOn: GetManifestVersions
     variables:
       version: $[ dependencies.GetManifestVersions.outputs['GetFirefoxVersion.FirefoxVersion'] ]
+      browser: firefox
     pool:
-      name: Hosted Ubuntu 1604
+      vmImage: ubuntu-18.04
     steps:
         
     - task: bash@3
       displayName: Build Firefox
       inputs:
         targetType: filePath
-        filePath: './build/build-firefox.sh'
-        workingDirectory: build
+        filePath: './build/build.sh'
+        workingDirectory: $(browser)
         failOnStderr: true
+      env: 
+        filename: $(browser)-extension-$(version).zip
     - task: PublishPipelineArtifact@1
       displayName: 'Publish Pipeline Artifact'
       inputs:
         targetPath: firefox/
-        artifact: 'firefox-$(version).zip'
+        artifact: 'firefox-$(version)'
 
   - job: ChromeBuild
     dependsOn: GetManifestVersions
     variables:
       version: $[ dependencies.GetManifestVersions.outputs['GetChromeVersion.ChromeVersion'] ]
+      browser: chrome
     pool:
-      name: Hosted Ubuntu 1604
+      vmImage: ubuntu-18.04
     steps:
     - task: bash@3
       displayName: Build Chrome
       inputs:
         targetType: filePath
-        filePath: './build/build-chrome.sh'
-        workingDirectory: build
+        filePath: './build/build.sh'
+        workingDirectory: $(browser)
         failOnStderr: true
+      env: 
+        filename: $(browser)-extension-$(version).zip
     - task: PublishPipelineArtifact@1
       displayName: 'Publish Pipeline Artifact'
       inputs:
         targetPath: chrome/
-        artifact: 'chrome-$(version).zip'
+        artifact: 'chrome-$(version)'
