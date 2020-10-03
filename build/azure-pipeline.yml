@@ -1,7 +1,7 @@
 jobs:
   - job: GetManifestVersions
     pool:
-      name: Hosted Ubuntu 1604
+      vmImage: ubuntu-18.04
     steps:
     - task: bash@3
       name: GetFirefoxVersion
@@ -33,7 +33,7 @@ jobs:
     variables:
       version: $[ dependencies.GetManifestVersions.outputs['GetFirefoxVersion.FirefoxVersion'] ]
     pool:
-      name: Hosted Ubuntu 1604
+      vmImage: ubuntu-18.04
     steps:
         
     - task: bash@3
@@ -54,7 +54,7 @@ jobs:
     variables:
       version: $[ dependencies.GetManifestVersions.outputs['GetChromeVersion.ChromeVersion'] ]
     pool:
-      name: Hosted Ubuntu 1604
+      vmImage: ubuntu-18.04
     steps:
     - task: bash@3
       displayName: Build Chrome
