@@ -27,7 +27,6 @@ jobs:
       inputs:
         targetType: filePath
         filePath: './build/build.sh'
-        failOnStderr: true
       env: 
         filename: extension-$(version).zip
     - task: PublishPipelineArtifact@1
