@@ -1,6 +1,6 @@
 #!/bin/bash
-
-cp icons/*.png .
-zip $filename *
 mkdir export
-cp * export
+cd export
+cp ..icons/*.png .
+cp ../*.js* .
+zip $filename *

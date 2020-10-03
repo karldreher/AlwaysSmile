@@ -23,7 +23,7 @@ jobs:
       vmImage: ubuntu-18.04
     steps:
     - task: bash@3
-      displayName: Build Chrome
+      displayName: Export Extension
       inputs:
         targetType: filePath
         filePath: './build/build.sh'
