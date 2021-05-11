@@ -19,6 +19,7 @@
   "permissions": [ 
     "webRequest",
     "webRequestBlocking",
+    "https://www.amazon.co.uk/*",
     "https://www.amazon.com/*",
     "https://www.amazon.de/*"
   ]
