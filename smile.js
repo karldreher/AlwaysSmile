@@ -17,6 +17,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 	}, 
 
 	{urls : [
+		"https://www.amazon.co.uk/*",
 		"https://www.amazon.com/*",
 		"https://www.amazon.de/*"],
 		

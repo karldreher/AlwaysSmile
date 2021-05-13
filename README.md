@@ -12,6 +12,7 @@ As of the current version, this extension provides support for the following Ama
 
 - [amazon.de](https://www.amazon.de) 
 - [amazon.com](https://www.amazon.com)
+- [amazon.co.uk](https://www.amazon.co.uk)
 
 ## Extension Links
 
