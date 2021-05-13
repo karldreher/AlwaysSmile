@@ -1,0 +1,82 @@
+name: Browser Extension Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows running this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  manifestinfo:
+    name: Get Extension Info
+    runs-on: ubuntu-20.04
+    outputs: 
+      version: ${{ steps.ExtensionVersion.outputs.version }}
+      name: ${{ steps.ExtensionName.outputs.name }}
+      sizes: ${{ steps.IconSizes.outputs.sizes }}
+
+    steps:
+      - id: checkout
+        uses: actions/checkout@v2
+
+      - id: ExtensionVersion
+        name: Get Extension Version
+        run: |
+          jq -r .version manifest.json
+          value=$(jq -r .version manifest.json)
+          echo "::set-output name=version::$value"
+
+      - id: ExtensionName
+        name: Get Extension Name
+        run: |
+          jq -r .name manifest.json
+          value=$(jq -r .name manifest.json | sed 's/ /-/')
+          echo "::set-output name=name::$value"
+
+      - id: IconSizes
+        name: Get Icon Sizes
+        run: |
+          jq .icons manifest.json | jq 'keys | .[]'
+          sizes=$(jq .icons manifest.json | jq 'keys | .[]' | base64)
+          echo "::set-output name=sizes::$sizes"
+  build:
+    name: Build Extension
+    runs-on: ubuntu-20.04
+    needs: manifestinfo
+    steps:
+    - id: checkout
+      uses: actions/checkout@v2
+
+    - id: icons
+      name: Create Icon Set
+      run: |
+        imagesizes=$(echo ${{needs.manifestinfo.outputs.sizes}} | base64 --decode)
+        for item in $imagesizes; do 
+          i=$(echo $item | tr -d '"')
+          if [[ $i -eq 128 ]]; then
+            echo "original size, nothing to do"
+            continue
+          fi
+          echo "creating ${i}x${i} icon"
+          convert icon-128.png -resize ${i}x${i} icon-${i}.png
+        done
+      working-directory: ./icons
+
+    - id: build
+      name: Collect Extension Files
+      run: |
+        mkdir export
+        cd export
+        cp ../icons/*.png .
+        cp ../*.js* .
+        cp ../*.html .
+        
+    - id: publish-artifact
+      name: Artifact Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{needs.manifestinfo.outputs.name}}-${{needs.manifestinfo.outputs.version}}
+        path: export/ 
