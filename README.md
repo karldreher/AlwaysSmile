@@ -6,23 +6,21 @@ When you use this add-on, anytime you visit [amazon.com](http://www.amazon.com),
 
 AmazonSmile is a way to donate a small amount from your purchase to charitable causes. Read more at http://smile.amazon.com
 
-
 As of the current version, this extension provides support for the following Amazon sites:
 
 - [amazon.de](https://www.amazon.de) 
 - [amazon.com](https://www.amazon.com)
-
-
-
+- [amazon.co.uk](https://www.amazon.co.uk)
 
 ## Extension Links
-* Firefox: https://addons.mozilla.org/en-US/firefox/addon/alwayssmile/
 
-* Chrome: https://chrome.google.com/webstore/detail/alwayssmile/nhafpahnjcnanhgnpabflmihfodkldla
+- Firefox: https://addons.mozilla.org/en-US/firefox/addon/alwayssmile/
+- Chrome: https://chrome.google.com/webstore/detail/alwayssmile/nhafpahnjcnanhgnpabflmihfodkldla
 
 ## Contributing
-See [contributing.md](contributing.md)
 
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Disclaimer
+
 AlwaysSmile is in no way affiliated with Amazon.
