@@ -72,7 +72,6 @@ jobs:
         cd export
         cp ../icons/*.png .
         cp ../*.js* .
-        cp ../*.html .
         
     - id: publish-artifact
       name: Artifact Upload
