@@ -17,7 +17,7 @@ jobs:
       version: ${{ steps.ExtensionVersion.outputs.version }}
       name: ${{ steps.ExtensionName.outputs.name }}
       sizes: ${{ steps.IconSizes.outputs.sizes }}
-    
+
     steps:
       - id: checkout
         uses: actions/checkout@v2
@@ -28,12 +28,14 @@ jobs:
           jq -r .version manifest.json
           value=$(jq -r .version manifest.json)
           echo "::set-output name=version::$value"
+
       - id: ExtensionName
         name: Get Extension Name
         run: |
           jq -r .name manifest.json
           value=$(jq -r .name manifest.json | sed 's/ /-/')
           echo "::set-output name=name::$value"
+
       - id: IconSizes
         name: Get Icon Sizes
         run: |
@@ -70,10 +72,10 @@ jobs:
         cd export
         cp ../icons/*.png .
         cp ../*.js* .
-        cp ../*.html .
+        
     - id: publish-artifact
       name: Artifact Upload
       uses: actions/upload-artifact@v2
       with:
         name: ${{needs.manifestinfo.outputs.name}}-${{needs.manifestinfo.outputs.version}}
-        path: export/
+        path: export/ 
