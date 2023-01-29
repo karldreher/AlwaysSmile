@@ -1,3 +1,7 @@
+| :warning: Deprecation Notice          |
+|:------------------------------------------|
+| [After some dissapointing news from Amazon](https://www.aboutamazon.com/news/company-news/amazon-closing-amazonsmile-to-focus-its-philanthropic-giving-to-programs-with-greater-impact), this extension has been deprecated.  As of this point the the extension store pages have been removed/ disabled, and no new development will occur.  This repository will remain intact, to keep the sourcecode available for reference.  Although simple, this was one of my favorite projects!       |
+
 # AlwaysSmile
 
  <img src="./icons/icon-128.png" width="32" height="32" />
